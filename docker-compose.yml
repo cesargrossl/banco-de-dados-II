@@ -1,0 +1,30 @@
+version: "3"
+services:
+  # Serviço de banco de dados MySQL
+  mysql:
+    image: mysql:5.7.20
+    container_name: con-mysql
+    volumes:
+      - "db_data3:/var/lib/mysql"
+      - "./db/mysql:/docker-entrypoint-initdb.d"
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=5020@1223
+
+  # Serviço de banco de dados SQL Server
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    container_name: con-sqlserver
+    volumes:
+      - "sqlserver_data:/var/opt/mssql"
+      - "./db/sqlserver:/docker-entrypoint-initdb.d"
+    ports:
+      - "1433:1433"
+    environment:
+      - SA_PASSWORD=Cg5020@1223
+      - ACCEPT_EULA=Y
+
+volumes:
+  db_data3:
+  sqlserver_data:
