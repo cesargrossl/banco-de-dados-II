@@ -1,30 +1,46 @@
 version: "3"
 services:
-  # Serviço de banco de dados MySQL
-  # mysql:
-    # image: mysql:5.7.20
-    # container_name: con-mysql
-    # volumes:
-#       - "db_data3:/var/lib/mysql"
-      # - "./db/mysql:/docker-entrypoint-initdb.d"
-    # ports:
-#       - "3306:3306"
-#     environment:
-      # - MYSQL_ROOT_PASSWORD=5020@1223
+  # Serviço de banco de dados MySQL (versão atualizada)
+  mysql:
+    image: mysql:8.3
+    container_name: con-mysql
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./db/mysql:/docker-entrypoint-initdb.d
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=5020@1223
+      - MYSQL_DATABASE=meubanco
+      - MYSQL_USER=usuario
+      - MYSQL_PASSWORD=Cg5020@1223
 
   # Serviço de banco de dados SQL Server
   sqlserver:
     image: mcr.microsoft.com/mssql/server:2019-latest
     container_name: con-sqlserver
     volumes:
-      - "sqlserver_data:/var/opt/mssql"
-      - "./db/sqlserver:/docker-entrypoint-initdb.d"
+      - sqlserver_data:/var/opt/mssql
+      - ./db/sqlserver:/docker-entrypoint-initdb.d
     ports:
       - "1433:1433"
     environment:
       - SA_PASSWORD=Cg5020@1223
       - ACCEPT_EULA=Y
 
+  # Serviço de banco de dados MongoDB
+  mongo:
+    image: mongo:4.4
+    container_name: con-mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=Cg5020@1223
+
 volumes:
-  db_data3:
+  db_data:
   sqlserver_data:
+  mongo_data:
