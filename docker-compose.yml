@@ -40,7 +40,20 @@ services:
       - MONGO_INITDB_ROOT_USERNAME=root
       - MONGO_INITDB_ROOT_PASSWORD=Cg5020@1223
 
+  # Serviço de banco de dados Oracle
+  oracle:
+    image: gvenzl/oracle-xe:21.3.0-slim
+    container_name: con-oracle
+    ports:
+      - "1521:1521"
+    environment:
+      - ORACLE_PASSWORD=Cg5020@1223
+      - ORACLE_DATABASE=meubanco
+    volumes:
+      - oracle_data:/opt/oracle/oradata
+
 volumes:
   db_data:
   sqlserver_data:
   mongo_data:
+  oracle_data:
