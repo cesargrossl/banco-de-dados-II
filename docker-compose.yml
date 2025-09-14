@@ -52,8 +52,23 @@ services:
     volumes:
       - oracle_data:/opt/oracle/oradata
 
+  # Serviço de banco de dados PostgreSQL
+  postgres:
+    image: postgres:16
+    container_name: con-postgres
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=usuario
+      - POSTGRES_PASSWORD=Cg5020@1223
+      - POSTGRES_DB=meubanco
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./db/postgres:/docker-entrypoint-initdb.d
+
 volumes:
   db_data:
   sqlserver_data:
   mongo_data:
   oracle_data:
+  postgres_data:

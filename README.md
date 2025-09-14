@@ -1,29 +1,39 @@
+# 🐳 Ambiente de Bancos de Dados com Docker
 
-# 🐳 Ambiente de Banco de Dados com Docker
+Este projeto fornece um ambiente Docker pré-configurado com múltiplos **SGBDs** (MySQL, SQL Server, MongoDB, Oracle e PostgreSQL) para facilitar testes, desenvolvimento e aprendizado.
 
-Este projeto fornece um ambiente Docker pré-configurado com **MySQL**, **SQL Server** e **MongoDB** para facilitar testes, desenvolvimento e aprendizado.
+---
 
-## 🚀 Como iniciar o ambiente
+## 🚀 Como rodar o ambiente Docker
 
 Na pasta raiz do projeto, execute:
 
 ```sh
-docker-compose up -d
+docker compose up -d
 ```
 
-Para parar e remover os containers, utilize:
+Para parar e remover os containers:
 
 ```sh
-docker-compose down
+docker compose down
 ```
+
+> 💡 Você pode subir apenas um ou alguns serviços específicos:
+>
+> ```sh
+> docker compose up -d mysql
+> docker compose up -d postgres mongo
+> ```
 
 ---
 
 ## 📦 Serviços Disponíveis
 
-- **MySQL**
-- **SQL Server**
-- **MongoDB**
+- 🐬 **MySQL 8.3**
+- 🖥️ **SQL Server 2019**
+- 🍃 **MongoDB 4.4**
+- 🏛️ **Oracle XE 21c**
+- 🐘 **PostgreSQL 16**
 
 ---
 
@@ -33,10 +43,11 @@ docker-compose down
 
 - **Host:** `localhost`
 - **Porta:** `3306`
-- **Usuário:** `root`
-- **Senha:** *(defina em seu docker-compose, se aplicável)*
+- **Usuário:** `usuario` (ou `root`)
+- **Senha:** `Cg5020@1223`
+- **Banco padrão:** `meubanco`
 
-Você pode usar ferramentas como **MySQL Workbench**, **DBeaver**, **HeidiSQL** ou qualquer cliente de sua preferência.
+Ferramentas recomendadas: **MySQL Workbench**, **DBeaver**, **HeidiSQL**.
 
 ---
 
@@ -47,9 +58,9 @@ Você pode usar ferramentas como **MySQL Workbench**, **DBeaver**, **HeidiSQL** 
 - **Host:** `localhost`
 - **Porta:** `1433`
 - **Usuário:** `sa`
-- **Senha:** *(defina em seu docker-compose, se aplicável)*
+- **Senha:** `Cg5020@1223`
 
-Utilize clientes como **SQL Server Management Studio (SSMS)**, **Azure Data Studio** ou similares.
+Ferramentas recomendadas: **SQL Server Management Studio (SSMS)**, **Azure Data Studio**.
 
 ---
 
@@ -60,7 +71,7 @@ Utilize clientes como **SQL Server Management Studio (SSMS)**, **Azure Data Stud
 - **Host:** `localhost`
 - **Porta:** `27017`
 - **Usuário:** `root`
-- **Senha:** `Cg5020@1223`  
+- **Senha:** `Cg5020@1223`
 - **Auth Source:** `admin`
 
 **String de conexão:**
@@ -69,29 +80,62 @@ Utilize clientes como **SQL Server Management Studio (SSMS)**, **Azure Data Stud
 mongodb://root:Cg5020%401223@localhost:27017/?authSource=admin
 ```
 
-### 📑 Dica: Usando a extensão MongoDB para VS Code
+### 📑 Dica: Usando MongoDB no VS Code
 
 1. Instale a extensão **MongoDB for VS Code**.
-2. Abra a paleta de comandos (`Ctrl+Shift+P`) e pesquise por "MongoDB: Connect".
-3. Cole a string de conexão acima para acessar o banco de dados direto pelo VS Code.
+2. Abra a paleta de comandos (`Ctrl+Shift+P`) → "MongoDB: Connect".
+3. Cole a string de conexão acima.
+
+---
+
+## 🏛️ Conexão com o Oracle XE
+
+![Oracle Logo](https://raw.githubusercontent.com/github/explore/main/topics/oracle/oracle.png)
+
+- **Host:** `localhost`
+- **Porta:** `1521`
+- **Usuário padrão:** `system`
+- **Senha:** `Cg5020@1223`
+- **Banco:** `meubanco`
+
+Ferramentas recomendadas: **Oracle SQL Developer**, **DBeaver**.
+
+---
+
+## 🐘 Conexão com o PostgreSQL
+
+![PostgreSQL Logo](https://raw.githubusercontent.com/github/explore/main/topics/postgresql/postgresql.png)
+
+- **Host:** `localhost`
+- **Porta:** `5432`
+- **Usuário:** `usuario`
+- **Senha:** `Cg5020@1223`
+- **Banco padrão:** `meubanco`
+
+Ferramentas recomendadas: **pgAdmin**, **DBeaver**, **TablePlus**.
 
 ---
 
 ## 📚 Referências
 
-- [Docker Compose Docs](https://docs.docker.com/compose/)
+- [Documentação Docker Compose](https://docs.docker.com/compose/)
 - [MySQL](https://www.mysql.com/)
-- [SQL Server](https://www.microsoft.com/en-us/sql-server/)
+- [SQL Server](https://www.microsoft.com/sql-server)
 - [MongoDB](https://www.mongodb.com/)
+- [Oracle XE](https://www.oracle.com/database/technologies/appdev/xe.html)
+- [PostgreSQL](https://www.postgresql.org/)
 
 ---
 
-## ✨ Sugestões
+## ✨ Boas práticas
 
-- Altere as senhas padrão no arquivo `docker-compose.yml` para garantir segurança no seu ambiente.
-- Se precisar expor para acesso externo, atente-se às portas configuradas.
-- Para reiniciar os containers sem perder dados, use apenas `docker-compose restart`.
+- 🔑 Altere as senhas padrão no `docker-compose.yml` antes de uso em produção.
+- 🔒 Restrinja o acesso às portas se for expor para rede externa.
+- ♻️ Para reiniciar sem perder dados, use:
+  ```sh
+  docker compose restart
+  ```
 
 ---
 
-> Desenvolvido para facilitar seus estudos e experimentos com bancos de dados usando Docker.
+> 🛠️ Desenvolvido para apoiar estudos, testes e experimentos com diferentes bancos de dados em ambiente Docker.
